@@ -1,0 +1,91 @@
+.graph-view {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  background: #1e1e1e;
+}
+
+.entity-node {
+  background: #2d2d30;
+  border: 1px solid #3c3c3c;
+  border-radius: 6px;
+  padding: 8px 12px;
+  min-width: 180px;
+  font-family: 'Inter', sans-serif;
+  color: #d4d4d4;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.entity-node:hover {
+  border-color: #0e639c;
+}
+
+.entity-node--selected {
+  border-color: #0e639c;
+  box-shadow: 0 0 0 2px rgba(14, 99, 156, 0.35);
+}
+
+.entity-node__label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entity-node__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 10px;
+  color: #9d9d9d;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.entity-node__id {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entity-node__attrs {
+  flex-shrink: 0;
+}
+
+.entity-node__handle {
+  width: 6px;
+  height: 6px;
+  background: #0e639c;
+  border: 1px solid #1e1e1e;
+}
+
+/* Мини-карта */
+.react-flow__minimap {
+  background: #252526 !important;
+}
+
+.react-flow__controls {
+  background: #252526;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+}
+
+.react-flow__controls-button {
+  background: #252526;
+  border: none;
+  border-bottom: 1px solid #3c3c3c;
+  color: #d4d4d4;
+}
+
+.react-flow__controls-button:hover {
+  background: #2d2d30;
+}
+
+.entity-node--cursor-active {
+  border-color: #4fc1ff;
+  box-shadow: 0 0 0 2px rgba(79, 193, 255, 0.35),
+    0 0 12px rgba(79, 193, 255, 0.25);
+}
