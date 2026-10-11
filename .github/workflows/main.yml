@@ -2,11 +2,11 @@ name: Deploy Web to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # Или master, в зависимости от вашей ветки
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -24,35 +24,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20 # Соответствует вашему engines
+          node-version: 20
           cache: 'npm'
-          # Кеширование npm в корне и в web папке
-          cache-dependency-path: |
-            package-lock.json
 
-      - name: Install Core Dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build Core (Library)
-        # Собираем корневой пакет, чтобы dist/ появился
-        run: npm run build
-
-      - name: Install Web Dependencies
-        working-directory: ./
-        # Используем ci, если есть package-lock.json, иначе install
-        run: npm ci
-
-      - name: Build Web
-        working-directory: ./
-        # Скрипт build:core внутри web сделает cd .. и npm run build, 
-        # но мы уже собрали корень выше, так что это может быть избыточно,
-        # но не повредит. Основное — это tsc --noEmit && vite build
+      - name: Build
         run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./dist # Vite по умолчанию собирает в папку dist
 
   deploy:
     environment:
