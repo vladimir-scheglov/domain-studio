@@ -5,7 +5,7 @@ on:
     branches: [ main ] # Триггер на пуш в ветку main
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
